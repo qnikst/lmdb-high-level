@@ -155,7 +155,7 @@ openMultiDatabase t@(Transaction txn) name settings = do
           EncodingVariable _ -> []
           EncodingMachineWord _ -> [MDB_DUPFIXED]
           EncodingFixed _ _ -> [MDB_DUPFIXED]
-      baseOpts = [{-MDB_DUPSORT-}] -- FIXME
+      baseOpts = [MDB_DUPSORT]
       safeFfi = keySafeFfi || valSafeFfi
       opts = rwOpts ++ keySortOpts ++ valSortOpts ++ multiOpts ++ baseOpts
   dbi <- mdb_dbi_open_X safeFfi txn name opts
